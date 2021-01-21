@@ -1,0 +1,34 @@
+@import "main";
+@import "reset";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap");
+
+/** Make poppins the default font */
+body * {
+  font-family: $poppins;
+}
+
+/** Hide scrollbar on small screens */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/** Show custom scrollbar on large screens */
+@media (min-width: $bp-md) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    display: unset;
+  }
+  ::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $blue-500;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: $white;
+  }
+}

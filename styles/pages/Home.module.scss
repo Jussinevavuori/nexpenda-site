@@ -1,0 +1,11 @@
+@import "../main";
+
+.Home {
+  padding: $spacing-16;
+  & > div {
+    padding: $spacing-4 0;
+    & a button {
+      margin-top: $spacing-4;
+    }
+  }
+}

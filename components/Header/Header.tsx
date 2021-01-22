@@ -1,10 +1,15 @@
 import styles from "./Header.module.scss"
 import React from "react";
-import { Logo } from "../Logo/Logo";
+import cx from "classnames"
+import Logo from "../../public/logos/logo_full_colored.svg"
 import { Button } from "@material-ui/core";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 
 export function Header() {
-	return <header className={styles.Header}>
+
+	const scrollPosition = useScrollPosition()
+
+	return <header className={cx(styles.Header, { [styles.scrolled]: scrollPosition > 0 })}>
 		<div className={styles.content}>
 			<div className={styles.left}>
 				<Logo />

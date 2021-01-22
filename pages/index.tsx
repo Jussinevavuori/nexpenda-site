@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from "next/image"
 import cx from "classnames"
 import React, { useEffect, useState } from 'react'
+import Logo from "../public/logos/logo_full_colored.svg"
 import NexpendaLogoIconWhiteSvg from "../public/logos/logo_icon_white.svg"
 import NexpendaLogoIconColoredSvg from "../public/logos/logo_icon_colored.svg"
 import { motion, Variants } from "framer-motion"
@@ -17,7 +18,6 @@ import {
 	PieChart as PieChartIcon,
 	PlaylistAdd as ListAddItemIcon
 } from "@material-ui/icons";
-import { Logo } from "../components/Logo/Logo";
 
 export default function Home() {
 

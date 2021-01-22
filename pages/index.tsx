@@ -27,7 +27,7 @@ export default function Home() {
 		return () => window.clearTimeout(timeout)
 	}, [setMockupImageLoaded])
 
-	// useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }) }, [])
+	useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }) }, [])
 
 	return (
 		<div >
@@ -302,15 +302,10 @@ export default function Home() {
 
 const mockupImageVariants: Variants = {
 	hide: {
-		scale: 0,
-		rotate: 720,
-		transition: {
-			duration: 1,
-		}
+		transform: `scale(0) rotate(720deg)`,
 	},
 	show: {
-		scale: 1,
-		rotate: 0,
+		transform: `scale(1) rotate(0deg)`,
 		transition: {
 			duration: 1,
 		}

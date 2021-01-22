@@ -1,8 +1,11 @@
 import styles from "../styles/pages/Home.module.scss";
 import Head from 'next/head'
 import Image from "next/image"
-import React from 'react'
+import cx from "classnames"
+import React, { useEffect, useState } from 'react'
 import NexpendaLogoIconWhiteSvg from "../public/logos/logo_icon_white.svg"
+import NexpendaLogoIconColoredSvg from "../public/logos/logo_icon_colored.svg"
+import { motion, Variants } from "framer-motion"
 import { Header } from "../components/Header/Header"
 import { Type } from '../components/Type/Type'
 import { Button, SvgIcon } from "@material-ui/core";
@@ -17,6 +20,15 @@ import {
 import { Logo } from "../components/Logo/Logo";
 
 export default function Home() {
+
+	const [mockupImageLoaded, setMockupImageLoaded] = useState(false)
+	useEffect(() => {
+		const timeout = setTimeout(() => { setMockupImageLoaded(true) }, 1000)
+		return () => window.clearTimeout(timeout)
+	}, [setMockupImageLoaded])
+
+	// useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }) }, [])
+
 	return (
 		<div >
 			<Head>
@@ -30,32 +42,54 @@ export default function Home() {
 					<section className={styles.hero}>
 						<div className={styles.sectionContent}>
 							<div className={styles.heroRight}>
-								<div className={styles.heroImage}>
+								<motion.div
+									className={styles.heroImage}
+									variants={mockupImageVariants}
+									initial="hide"
+									animate={mockupImageLoaded ? "show" : "hide"}
+								>
 									<Image
 										src="/images/mobile-mockup.png"
 										alt="Mobile mockup"
 										layout="fill"
+										onLoad={() => { setMockupImageLoaded(true) }}
 									/>
-								</div>
+								</motion.div>
 							</div>
 							<div className={styles.heroLeft}>
 								<Type component="h1" color="black" variant="bold" size="xxxl">
 									{`We make saving money easy.`}
 								</Type>
-								<a href="https://app.nexpenda.com/register" target="blank" rel="noreferrer noopener">
-									<Button
-										className={styles.ctaButton}
-										variant="contained"
-										color="primary"
-										startIcon={
-											<SvgIcon>
-												<NexpendaLogoIconWhiteSvg />
-											</SvgIcon>
-										}
-									>
-										{`Create a free account`}
-									</Button>
-								</a>
+								<div className={styles.ctas}>
+									<a href="https://app.nexpenda.com/register" target="blank" rel="noreferrer noopener">
+										<Button
+											className={styles.ctaButton}
+											variant="contained"
+											color="primary"
+											startIcon={
+												<SvgIcon>
+													<NexpendaLogoIconWhiteSvg />
+												</SvgIcon>
+											}
+										>
+											{`Create a free account`}
+										</Button>
+									</a>
+									<a href="https://app.nexpenda.com" target="blank" rel="noreferrer noopener">
+										<Button
+											className={cx(styles.ctaButton, styles.secondary)}
+											variant="outlined"
+											color="primary"
+											startIcon={
+												<SvgIcon>
+													<NexpendaLogoIconColoredSvg />
+												</SvgIcon>
+											}
+										>
+											{`Open Nexpenda`}
+										</Button>
+									</a>
+								</div>
 							</div>
 						</div>
 					</section>
@@ -167,8 +201,8 @@ export default function Home() {
 										<Type component="p">
 											{`
 												If you can make it a habit to log your incomes
-												and expenses, we promise to do the rest. This way
-												you can see the real way
+												and expenses, we promise to do the rest and
+												provide you with real and helpful tools and info!
 											`}
 										</Type>
 									</div>
@@ -216,7 +250,7 @@ export default function Home() {
 										color="primary"
 										startIcon={
 											<SvgIcon>
-												<NexpendaLogoIconWhiteSvg />
+												<NexpendaLogoIconColoredSvg />
 											</SvgIcon>
 										}
 									>
@@ -264,4 +298,21 @@ export default function Home() {
 			</main>
 		</div>
 	)
+}
+
+const mockupImageVariants: Variants = {
+	hide: {
+		scale: 0,
+		rotate: 720,
+		transition: {
+			duration: 1,
+		}
+	},
+	show: {
+		scale: 1,
+		rotate: 0,
+		transition: {
+			duration: 1,
+		}
+	}
 }

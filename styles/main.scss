@@ -311,7 +311,7 @@ $bp-lg: 1200px;
   }
 }
 
-@mixin min-width($mw) {
+@mixin wider-than($mw) {
   @media (min-width: $mw) {
     @content;
   }

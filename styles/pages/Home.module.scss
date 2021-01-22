@@ -1,11 +1,310 @@
 @import "../main";
 
 .Home {
-  padding: $spacing-16;
-  & > div {
-    padding: $spacing-4 0;
-    & a button {
-      margin-top: $spacing-4;
+  & > .content {
+    overflow-x: hidden;
+    min-height: 100vh;
+    & > section,
+    footer {
+      position: relative;
+      & > .sectionContent,
+      & > .footerContent {
+        position: relative;
+        margin: 0 auto;
+        width: 90%;
+        padding: $spacing-24 $spacing-4;
+        max-width: $max-page-width;
+      }
+    }
+    & > section.hero {
+      & > .sectionContent {
+        & > .heroLeft {
+          max-width: 420px;
+          & > h1 {
+            margin-bottom: $spacing-16;
+          }
+        }
+        & > .heroRight {
+          position: static;
+          transform: translateY(-80px);
+          & > .heroImage {
+            height: 400px;
+            width: 100%;
+            & img {
+              object-fit: cover;
+            }
+          }
+          @include md {
+            transform: unset;
+            position: absolute;
+            z-index: 50;
+            top: 0;
+            right: 0;
+            margin-top: -50px;
+            margin-right: -200px;
+            & > .heroImage {
+              height: 700px;
+              width: 700px;
+            }
+          }
+        }
+      }
+    }
+    & section.features {
+      position: relative;
+      & > .sectionContent {
+        position: static;
+        & > .content {
+          & > h2 {
+            max-width: 600px;
+          }
+          & ul {
+            padding-top: $spacing-8;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: $spacing-8 $spacing-6;
+            & > li {
+              padding: $spacing-4;
+              background: white;
+              border-radius: $radius-md;
+              border: $border;
+              box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.05),
+                1px 2px 4px rgba(0, 0, 0, 0.15);
+              &,
+              & > i {
+                transition: transform 250ms;
+              }
+              & > i {
+                display: block;
+                width: 100%;
+                height: 120px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: rotate(0deg);
+                & > svg {
+                  height: 48px;
+                  width: 48px;
+                  fill: $blue-500;
+                }
+              }
+              &:hover {
+                transform: scale(1.05);
+                & > i {
+                  transform: rotate(360deg);
+                }
+              }
+              & > h3 {
+                position: relative;
+                margin-bottom: $spacing-6;
+                &::after {
+                  content: "";
+                  position: absolute;
+                  bottom: calc(-1 * #{$spacing-3});
+                  left: 0;
+                  height: 4px;
+                  width: 60px;
+                  background: $gray-800;
+                }
+              }
+              & > p {
+                line-height: 150%;
+              }
+            }
+          }
+        }
+        & > .background {
+          z-index: -1;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 100%;
+          width: 100%;
+          background: black;
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            @include md {
+              background: linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.7) 50%,
+                rgba(0, 0, 0, 0) 100%
+              );
+            }
+          }
+          & > .backgroundImage {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            & img {
+              object-fit: cover;
+            }
+          }
+        }
+      }
+    }
+    & section.how {
+      & > .sectionContent {
+        background: $blue-100;
+        @include md {
+          background: none;
+        }
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 66%;
+          width: 150vw;
+          height: 100%;
+          background: $blue-100;
+          z-index: -1;
+        }
+        & > ul {
+          margin-top: $spacing-8;
+          & > li {
+            padding: $spacing-4 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            @include md {
+              grid-template-columns: 1fr 2fr;
+              grid-template-rows: auto;
+            }
+            align-items: start;
+            $gap: $spacing-8;
+            & > .stepTitle {
+              padding-right: $gap;
+              display: flex;
+              align-items: center;
+              @include md {
+                justify-content: flex-end;
+              }
+              & > i {
+                margin-right: $spacing-4;
+                & svg {
+                  fill: $blue-500;
+                }
+              }
+            }
+            & > .stepSummary {
+              padding-top: $spacing-4;
+              @include md {
+                padding-top: 6px;
+                padding-left: $gap;
+              }
+              & > p {
+                max-width: 360px;
+              }
+            }
+          }
+        }
+      }
+    }
+    & section.finalCta {
+      background: $blue-500;
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: $blue-500;
+        z-index: -1;
+      }
+      & > .sectionContent {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        @include md {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
+        }
+        & > .left {
+          @include md {
+            padding-right: $spacing-8;
+          }
+          & > p {
+            margin-bottom: $spacing-6;
+          }
+        }
+        & > .right {
+          display: grid;
+          place-items: center;
+          padding-top: $spacing-12;
+          @include md {
+            padding-top: 0;
+          }
+        }
+      }
+      & .ctaButton {
+        background: white;
+        color: black;
+        & svg * {
+          fill: black;
+        }
+      }
+    }
+    & footer {
+      background: $gray-200;
+      & > .footerContent {
+        display: grid;
+        grid-template:
+          "logo" auto
+          "links" auto
+          "contact" auto
+          "poweredby" auto / 1fr;
+        @include md {
+          grid-template:
+            "logo links" auto
+            "contact ." auto
+            "poweredby ." auto / 1fr 1fr;
+        }
+        gap: $spacing-12 $spacing-8;
+        & > .logoContainer {
+          grid-area: logo;
+        }
+        & > .contact {
+          grid-area: contact;
+        }
+        & > .poweredBy {
+          grid-area: poweredby;
+        }
+        & > .links {
+          grid-area: links;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto;
+          @include sm {
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto;
+          }
+          gap: $spacing-4;
+        }
+      }
+    }
+  }
+  & .ctaButton {
+    padding: $spacing-2 $spacing-8;
+    & svg {
+      height: $spacing-6;
+      width: $spacing-6;
+    }
+    & * {
+      font-size: $text-lg;
     }
   }
 }

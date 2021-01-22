@@ -1,5 +1,35 @@
 @import "../../styles/main";
 
 .Header {
+  position: sticky;
+  top: 0;
+  padding: $spacing-4 $spacing-4;
+  @include sm {
+    padding: $spacing-8 $spacing-4;
+  }
+  z-index: 100;
+  background: white;
+  & > .content {
+    margin: 0 auto;
+    width: 90%;
+    max-width: $max-page-width;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > .right {
+      display: none;
+    }
+    @include sm {
+      justify-content: space-between;
+      & > .left {
+      }
+      & > .right {
+        display: block;
+        & > *:nth-child(2) {
+          margin-left: $spacing-4;
+        }
+      }
+    }
+  }
   // padding: $spacing-2;
 }

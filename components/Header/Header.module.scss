@@ -20,14 +20,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    & > .left {
+      width: 200px;
+      & > * {
+        transform: translateY(2px);
+      }
+    }
     & > .right {
       display: none;
     }
     @include sm {
       justify-content: space-between;
-      & > .left {
-        width: 200px;
-      }
       & > .right {
         display: block;
         & > *:nth-child(2) {

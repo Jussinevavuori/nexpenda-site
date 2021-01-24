@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react'
 import Logo from "../public/logos/logo_full_colored.svg"
 import NexpendaLogoIconWhiteSvg from "../public/logos/logo_icon_white.svg"
 import NexpendaLogoIconColoredSvg from "../public/logos/logo_icon_colored.svg"
-import { motion, Variants } from "framer-motion"
 import { Header } from "../components/Header/Header"
 import { Type } from '../components/Type/Type'
 import { Button, SvgIcon } from "@material-ui/core";
@@ -42,19 +41,14 @@ export default function Home() {
 					<section className={styles.hero}>
 						<div className={styles.sectionContent}>
 							<div className={styles.heroRight}>
-								<motion.div
-									className={styles.heroImage}
-									variants={mockupImageVariants}
-									initial="hide"
-									animate={mockupImageLoaded ? "show" : "hide"}
-								>
+								<div className={styles.heroImage}>
 									<Image
 										src="/images/mobile-mockup.png"
 										alt="Mobile mockup"
 										layout="fill"
 										onLoad={() => { setMockupImageLoaded(true) }}
 									/>
-								</motion.div>
+								</div>
 							</div>
 							<div className={styles.heroLeft}>
 								<Type component="h1" color="black" variant="bold" size="xxxl">
@@ -298,16 +292,4 @@ export default function Home() {
 			</main>
 		</div>
 	)
-}
-
-const mockupImageVariants: Variants = {
-	hide: {
-		transform: `scale(0) rotate(720deg)`,
-	},
-	show: {
-		transform: `scale(1) rotate(0deg)`,
-		transition: {
-			duration: 1,
-		}
-	}
 }

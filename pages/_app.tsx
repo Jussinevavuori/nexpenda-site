@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					gtag('js', new Date());
 					gtag('config', 'G-SW3M4TBE5D');
 					console.log("GTag running")
-				`.replace(/\s+/g, "").trim()
+				`.replace(/\s+/g, " ").trim()
 			}} />
 		</Head>
 		<Favicon />

@@ -25,6 +25,7 @@
 		"hooks",
 		"pages",
 		"styles",
+		"services",
 		"next-env.d.ts"
 	],
 	"exclude": [

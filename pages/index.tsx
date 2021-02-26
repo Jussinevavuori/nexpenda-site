@@ -2,7 +2,7 @@ import styles from "../styles/pages/Home.module.scss";
 import Head from 'next/head'
 import Image from "next/image"
 import cx from "classnames"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Logo from "../public/logos/logo_full_colored.svg"
 import NexpendaLogoIconWhiteSvg from "../public/logos/logo_icon_white.svg"
 import NexpendaLogoIconColoredSvg from "../public/logos/logo_icon_colored.svg"
@@ -17,15 +17,9 @@ import {
 	PieChart as PieChartIcon,
 	PlaylistAdd as ListAddItemIcon
 } from "@material-ui/icons";
+import { GtagService } from "../services/GtagService";
 
 export default function Home() {
-
-	const [mockupImageLoaded, setMockupImageLoaded] = useState(false)
-	useEffect(() => {
-		const timeout = setTimeout(() => { setMockupImageLoaded(true) }, 1000)
-		return () => window.clearTimeout(timeout)
-	}, [setMockupImageLoaded])
-
 	useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }) }, [])
 
 	return (
@@ -46,7 +40,6 @@ export default function Home() {
 										src="/images/mobile-mockup.png"
 										alt="Mobile mockup"
 										layout="fill"
-										onLoad={() => { setMockupImageLoaded(true) }}
 									/>
 								</div>
 							</div>
@@ -55,7 +48,12 @@ export default function Home() {
 									{`We make saving money easy.`}
 								</Type>
 								<div className={styles.ctas}>
-									<a href="https://app.nexpenda.com/register" target="blank" rel="noreferrer noopener">
+									<a
+										href="https://app.nexpenda.com/register"
+										target="blank"
+										rel="noreferrer noopener"
+										onClick={() => GtagService.events.goto_signup()}
+									>
 										<Button
 											className={styles.ctaButton}
 											variant="contained"
@@ -69,7 +67,12 @@ export default function Home() {
 											{`Create a free account`}
 										</Button>
 									</a>
-									<a href="https://app.nexpenda.com" target="blank" rel="noreferrer noopener">
+									<a
+										href="https://app.nexpenda.com"
+										target="blank"
+										rel="noreferrer noopener"
+										onClick={() => GtagService.events.goto_login()}
+									>
 										<Button
 											className={cx(styles.ctaButton, styles.secondary)}
 											variant="outlined"
@@ -237,7 +240,12 @@ export default function Home() {
 								</Type>
 							</div>
 							<div className={styles.right}>
-								<a href="https://app.nexpenda.com/register" target="blank" rel="noreferrer noopener">
+								<a
+									href="https://app.nexpenda.com/register"
+									target="blank"
+									rel="noreferrer noopener"
+									onClick={() => GtagService.events.goto_signup()}
+								>
 									<Button
 										className={styles.ctaButton}
 										variant="contained"
@@ -275,12 +283,22 @@ export default function Home() {
 								</Type>
 							</div>
 							<div className={styles.links}>
-								<a target="blank" rel="noopener noreferrer" href={`https://app.nexpenda.com/`}>
+								<a
+									target="blank"
+									rel="noopener noreferrer"
+									href={`https://app.nexpenda.com/`}
+									onClick={() => GtagService.events.goto_login()}
+								>
 									<Button variant="text" color="primary">
 										{"Sign in"}
 									</Button>
 								</a>
-								<a target="blank" rel="noopener noreferrer" href={`https://app.nexpenda.com/register`}>
+								<a
+									target="blank"
+									rel="noopener noreferrer"
+									href={`https://app.nexpenda.com/register`}
+									onClick={() => GtagService.events.goto_signup()}
+								>
 									<Button variant="contained" color="primary">
 										{"Create a free account"}
 									</Button>

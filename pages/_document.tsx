@@ -28,7 +28,6 @@ export default class MyDocument extends Document {
 					gtag('config', 'G-SW3M4TBE5D', {
 						page_path: window.location.pathname,
 					});
-					console.log("GTag running")
 				`.replace(/\s+/g, " ").trim()
 				}} />
 

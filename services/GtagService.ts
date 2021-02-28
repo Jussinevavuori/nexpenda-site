@@ -48,7 +48,7 @@ export type GtagEvent = {
 };
 
 export class GtagService {
-  static GoogleAnalyticsTrackingId = "G-SW3M4TBE5D";
+  static GoogleAnalyticsTrackingId = "G-Y74KDL8GJ9";
 
   /**
    * Mark a page as viewed.

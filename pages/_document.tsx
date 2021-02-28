@@ -6,30 +6,21 @@ export default class MyDocument extends Document {
 	render() {
 		return <Html>
 			<Head>
-
 				{/* Gtag */}
-				<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y74KDL8GJ9"></script>
-				<script dangerouslySetInnerHTML={{
-					__html: `
-						window.dataLayer = window.dataLayer || [];
-						function gtag(){dataLayer.push(arguments);}
-						gtag('js', new Date());
-						gtag('config', 'G-Y74KDL8GJ9');
-					`.replace(/\s+/g, " ").trim()
-				}} />
+				<script async src="https://www.googletagmanager.com/gtag/js?id=G-7G22WEXNSB" />
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							window.dataLayer = window.dataLayer || [];
+							function gtag(){dataLayer.push(arguments);}
+							gtag('js', new Date());
 
+							gtag('config', 'G-7G22WEXNSB');
+						`
+					}}
+				/>
 			</Head>
 			<body>
-
-				{/* Google tag manager */}
-				<noscript>
-					<iframe
-						src="https://www.googletagmanager.com/ns.html?id=GTM-T4B6NRC"
-						height="0"
-						width="0"
-						style={{ display: "none", visibility: "hidden" }}
-					/>
-				</noscript>
 				<Main />
 				<NextScript />
 			</body>

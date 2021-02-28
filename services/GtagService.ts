@@ -87,14 +87,14 @@ export class GtagService {
   static get events() {
     return {
       goto_signup() {
-        GtagService.event("sign_up", {
+        GtagService.event("goto_signup", {
           category: "Navigation to App",
           label: "Navigate to app signup page",
           value: 1,
         });
       },
       goto_login() {
-        GtagService.event("login", {
+        GtagService.event("goto_login", {
           category: "Navigation to App",
           label: "Navigate to app login page",
           value: 1,

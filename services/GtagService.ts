@@ -1,4 +1,4 @@
-export type GtagDefaultEventAction =
+export type GtagEventAction =
   | "add_payment_info"
   | "add_shipping_info"
   | "add_to_cart"
@@ -36,10 +36,6 @@ export type GtagDefaultEventAction =
   | "view_item_list"
   | "view_promotion"
   | "view_search_results";
-
-export type GtagCustomEventAction = "goto_login" | "goto_signup";
-
-export type GtagEventAction = GtagDefaultEventAction | GtagCustomEventAction;
 
 export type GtagEvent = {
   category: string;
@@ -87,15 +83,15 @@ export class GtagService {
   static get events() {
     return {
       goto_signup() {
-        GtagService.event("goto_signup", {
-          category: "Navigation to App",
+        GtagService.event("sign_up", {
+          category: "Navigate to App",
           label: "Navigate to app signup page",
           value: 1,
         });
       },
       goto_login() {
-        GtagService.event("goto_login", {
-          category: "Navigation to App",
+        GtagService.event("login", {
+          category: "Navigate to App",
           label: "Navigate to app login page",
           value: 1,
         });

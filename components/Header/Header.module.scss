@@ -22,6 +22,14 @@
     justify-content: center;
     & > .left {
       width: 200px;
+      & span.alphaTag {
+        position: absolute;
+        top: 35px;
+        left: 380px;
+        background: $blue-600;
+        padding: $spacing-1 $spacing-3;
+        border-radius: 20px;
+      }
       & > * {
         transform: translateY(2px);
       }

@@ -75,6 +75,10 @@
             }
           }
         }
+        & .alphaNotice {
+          bottom: $spacing-10;
+          position: absolute;
+        }
       }
     }
     & section.features {

@@ -88,6 +88,12 @@ export default function Home() {
 									</a>
 								</div>
 							</div>
+							<div className={styles.alphaNotice}>
+								<Type color="gray-600">
+									{"* Nexpenda is currently in Alpha-testing. "}
+									{"Some features may be buggy or missing."}
+								</Type>
+							</div>
 						</div>
 					</section>
 					<section className={styles.features}>

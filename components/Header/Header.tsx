@@ -5,6 +5,7 @@ import Logo from "../../public/logos/logo_full_colored.svg"
 import { Button } from "@material-ui/core";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { GtagService } from "../../services/GtagService";
+import { Type } from "../Type/Type";
 
 export function Header() {
 
@@ -13,6 +14,9 @@ export function Header() {
 	return <header className={cx(styles.Header, { [styles.scrolled]: scrollPosition > 0 })}>
 		<div className={styles.content}>
 			<div className={styles.left}>
+				<Type className={styles.alphaTag} color="white" size="sm" variant="bold" component="span">
+					{"Alpha"}
+				</Type>
 				<Logo />
 			</div>
 			<div className={styles.right}>

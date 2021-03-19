@@ -1,0 +1,41 @@
+@import "../../styles/main";
+
+.FakeTransaction {
+  display: grid;
+  grid-template: "icon category amount" auto / auto 1fr auto;
+  width: max-content;
+  align-items: center;
+  background: white;
+  padding: $spacing-3;
+  border-radius: $spacing-1;
+  border: 1px solid $gray-300;
+  gap: $spacing-4;
+
+  & .icon {
+    grid-area: icon;
+    @include text-boldcaps-lg;
+    background: $gray-200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+  }
+  & .category {
+    grid-area: category;
+    width: max-content;
+    @include text-bold-md;
+  }
+  & .amount {
+    grid-area: amount;
+    width: max-content;
+    @include text-boldcaps-md;
+    &.isPositive {
+      color: $green-600;
+    }
+    &.isNegative {
+      color: $red-600;
+    }
+  }
+}

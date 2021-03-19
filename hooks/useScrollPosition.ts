@@ -7,7 +7,9 @@ export function useScrollPosition() {
     const onUpdate = () => setScrollPosition(window.scrollY);
     window.addEventListener("scroll", onUpdate);
     onUpdate();
-    return () => window.removeEventListener("scroll", onUpdate);
+    return () => {
+      window.removeEventListener("scroll", onUpdate);
+    };
   }, [setScrollPosition]);
 
   return scrollPosition;

@@ -29,7 +29,10 @@ export default function Home() {
 			</Head>
 
 			<main className={styles.Home}>
-				<Header />
+				<div className={styles.headerContainer}>
+					<Header />
+				</div>
+
 
 				<div className={styles.content}>
 					<section className={styles.hero}>
@@ -88,9 +91,9 @@ export default function Home() {
 									</a>
 								</div>
 							</div>
-							<div className={styles.alphaNotice}>
+							<div className={styles.betaNotice}>
 								<Type color="gray-600">
-									{"* Nexpenda is currently in Alpha-testing. "}
+									{"* Nexpenda is currently in Beta-testing. "}
 									{"Some features may be buggy or missing."}
 								</Type>
 							</div>

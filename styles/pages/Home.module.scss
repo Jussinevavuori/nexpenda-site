@@ -1,6 +1,14 @@
 @import "../main";
 
 .Home {
+  & .headerContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+
   & > .content {
     overflow-x: hidden;
     min-height: 100vh;
@@ -17,9 +25,10 @@
       }
     }
     & > section.hero {
+      margin-top: $spacing-20;
       & > .sectionContent {
         padding-top: 0;
-        @include wider-than(800px) {
+        @include min-width(800px) {
           padding-top: $spacing-24;
         }
         & > .heroLeft {
@@ -55,7 +64,7 @@
               object-fit: contain;
             }
           }
-          @include wider-than(800px) {
+          @include min-width(800px) {
             transform: unset;
             position: absolute;
             z-index: 50;
@@ -75,7 +84,7 @@
             }
           }
         }
-        & .alphaNotice {
+        & .betaNotice {
           bottom: $spacing-10;
           position: absolute;
         }

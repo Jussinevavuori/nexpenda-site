@@ -1,0 +1,103 @@
+@import "../../styles/main";
+
+.HeroSection {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  & .foregroundTransactionsLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  & .foregroundImageLayer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2;
+  }
+
+  & .backgroundTransactionsLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -3;
+  }
+
+  & .backgroundImageLayer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -4;
+  }
+
+  & .backgroundTransactionsLayer,
+  & .foregroundTransactionsLayer {
+    & .transaction {
+      & .transactionInner {
+        animation: HeroImage-fadeTransaction 10000ms forwards;
+      }
+    }
+  }
+
+  & .contentLayer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.15);
+    & .content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+
+      text-align: center;
+
+      & h1 {
+        position: relative;
+        filter: drop-shadow(0px 0px 5px $primary-400);
+      }
+
+      & .callToAction {
+        margin-top: $spacing-12;
+        padding: $spacing-3 $spacing-8;
+        @include text-bold-lg;
+        &:hover {
+          background: $primary-600;
+        }
+      }
+    }
+  }
+}
+
+@keyframes HeroImage-fadeTransaction {
+  0% {
+    transform: translateY(4px) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) scale(0.8);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,59 @@
+@import "../main";
+
+.Home {
+  & .headerContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+
+  & > section,
+  & > footer {
+    position: relative;
+    & > .sectionContent,
+    & > .footerContent {
+      position: relative;
+      margin: 0 auto;
+      width: 90%;
+      padding: $spacing-24 0;
+      max-width: $max-page-width;
+    }
+  }
+
+  & .heroContainer {
+    position: relative;
+
+    & .heroContent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      // padding-bottom: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+
+      text-align: center;
+
+      & h1 {
+        position: relative;
+        filter: drop-shadow(0px 0px 5px $primary-400);
+      }
+
+      & .callToAction {
+        margin-top: $spacing-12;
+        padding: $spacing-3 $spacing-8;
+        @include text-bold-lg;
+        &:hover {
+          background: $primary-600;
+        }
+      }
+    }
+  }
+}

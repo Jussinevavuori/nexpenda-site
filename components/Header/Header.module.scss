@@ -4,11 +4,14 @@
   position: sticky;
   top: 0;
   padding: $spacing-4 0;
-  margin: $spacing-4;
-  border-radius: $spacing-1;
+  // margin: $spacing-4 auto 0 auto;
+  margin: 0 auto;
+  // border-radius: $spacing-2;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.09);
   @include sm {
-    padding: $spacing-4 0;
+    padding: $spacing-6 0;
   }
+  // max-width: $max-page-width;
   z-index: 100;
   background: white;
   transition: box-shadow 300ms, background-color 300ms, padding 300ms;

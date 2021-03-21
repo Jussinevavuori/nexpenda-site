@@ -9,49 +9,78 @@
     z-index: 2;
   }
 
-  & > section,
-  & > footer {
+  & > .section,
+  & > .footer {
     position: relative;
+    padding: 0 $spacing-4;
     & > .sectionContent,
     & > .footerContent {
       position: relative;
       margin: 0 auto;
-      width: 90%;
+      width: calc(100% - #{2 * $spacing-4});
       padding: $spacing-24 0;
       max-width: $max-page-width;
     }
   }
 
-  & .heroContainer {
-    position: relative;
+  & .spreadsheetsSection {
+    & .cardSection {
+      border: 1px solid $blue-200;
+      box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.08),
+        1px 1px 2px rgba(0, 0, 0, 0.05);
+      max-width: $max-page-width;
+      margin: -$spacing-12 auto 0;
+      border-radius: $spacing-2;
+      background: white;
+      padding: 0 $spacing-8;
+      & .sectionContent {
+        padding: $spacing-8 0;
+        & p {
+          max-width: 600px;
+          padding: $spacing-6 0;
+          line-height: 2;
+        }
+        & ul {
+          & li {
+            padding: $spacing-3 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: $spacing-4;
+            & svg {
+              color: $blue-500;
+            }
+          }
+        }
+      }
+    }
+  }
 
-    & .heroContent {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      // padding-bottom: 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
-
+  & .howDoesItWorkSection {
+    & .sectionContent {
       text-align: center;
 
-      & h1 {
-        position: relative;
-        filter: drop-shadow(0px 0px 5px $primary-400);
-      }
+      & .instructionsContainer {
+        padding: $spacing-6 0;
 
-      & .callToAction {
-        margin-top: $spacing-12;
-        padding: $spacing-3 $spacing-8;
-        @include text-bold-lg;
-        &:hover {
-          background: $primary-600;
+        & ul {
+          display: flex;
+          align-items: stretch;
+          justify-content: center;
+          gap: $spacing-6;
+          padding-top: $spacing-12;
+
+          & li {
+            gap: $spacing-6;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            & svg {
+              color: $blue-500;
+              font-size: 2rem;
+            }
+          }
         }
       }
     }

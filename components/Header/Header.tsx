@@ -3,9 +3,7 @@ import React from "react";
 import cx from "classnames"
 import Logo from "../../public/logos/logo_full_colored.svg"
 import { Button } from "@material-ui/core";
-import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { GtagService } from "../../services/GtagService";
-import { Type } from "../Type/Type";
 
 export type HeaderProps = {
 	unscrolledVariant?: "invisible";
@@ -13,14 +11,7 @@ export type HeaderProps = {
 
 export function Header(props: HeaderProps) {
 
-	const scrollPosition = useScrollPosition()
-
-	return <header
-		className={cx(
-			styles.Header,
-			{ [styles.scrolled]: scrollPosition > 0 }
-		)}
-	>
+	return <header className={cx(styles.Header)} >
 		<div className={styles.content}>
 			<div className={styles.left}>
 				<Logo />

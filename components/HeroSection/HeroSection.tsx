@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+import Link from 'next/link'
 import styles from "./HeroSection.module.scss";
 import cx from "classnames"
 import Image from "next/image"
@@ -14,45 +15,16 @@ export type HeroSectionProps = {}
 
 export function HeroSection(props: HeroSectionProps) {
 
-	const backgroundImageLayer = useRef<HTMLDivElement | null>(null)
-	const foregroundImageLayer = useRef<HTMLDivElement | null>(null)
-	const backgroundTransactionsLayer = useRef<HTMLDivElement | null>(null)
-	const foregroundTransactionsLayer = useRef<HTMLDivElement | null>(null)
+	const backgroundLayer = useRef<HTMLDivElement | null>(null)
+	const transactionsLayer = useRef<HTMLDivElement | null>(null)
 	const contentLayerContent = useRef<HTMLDivElement | null>(null)
 	const contentLayer = useRef<HTMLDivElement | null>(null)
 
 	useOnScroll(scroll => {
-
-		if (backgroundImageLayer.current) {
-			backgroundImageLayer.current.style.transform = `translateY(${scroll * 0.7}px) scale(${1 + scroll * 0.0001})`
-			backgroundImageLayer.current.style.filter = `blur(${scroll * 0.02}px) brightness(${1 - scroll * 0.001})`
+		if (transactionsLayer.current) {
+			transactionsLayer.current.style.transform = `translateY(${scroll * -0.3}px)`
 		}
-
-		if (backgroundTransactionsLayer.current) {
-			backgroundTransactionsLayer.current.style.transform = `translateY(${scroll * 0.5}px)`
-			backgroundTransactionsLayer.current.style.filter = `blur(${scroll * 0.02}px)`
-			backgroundTransactionsLayer.current.style.opacity = `${1 - scroll * 0.002}`
-		}
-
-		if (foregroundImageLayer.current) {
-			foregroundImageLayer.current.style.transform = `translateY(${scroll * 0.27}px)`
-			foregroundImageLayer.current.style.filter = `blur(${scroll * 0.02}px)`
-		}
-
-		if (foregroundTransactionsLayer.current) {
-			foregroundTransactionsLayer.current.style.transform = `translateY(${scroll * 0.18}px)`
-			foregroundTransactionsLayer.current.style.filter = `blur(${scroll * 0.02}px)`
-			foregroundTransactionsLayer.current.style.opacity = `${1 - scroll * 0.002}`
-		}
-
-		if (contentLayerContent.current) {
-			contentLayerContent.current.style.transform = `translateY(${scroll * -0.5}px)`
-			contentLayerContent.current.style.filter = `blur(${scroll * 0.02}px)`
-			contentLayerContent.current.style.opacity = `${1 - scroll * 0.002}`
-		}
-
-
-	}, 500)
+	})
 
 	const [fakeTransactions, setFakeTransactions] = useState<{
 		data: ReturnType<FakeTransactionGenerator["generate"]>,
@@ -60,24 +32,22 @@ export function HeroSection(props: HeroSectionProps) {
 		y: number,
 		x: number,
 		z: number,
-		layer: string,
 		timestamp: number,
 	}[]>([])
 
 	useEffect(() => {
 		const interval = window.setInterval(() => {
 			setFakeTransactions(_ => _
-				.filter(__ => __.timestamp > new Date().getTime() - 10000)
+				.filter(__ => __.timestamp > new Date().getTime() - 6000)
 				.concat((() => ({
 					data: FakeTransactionGenerator.Instance.generate(),
 					id: Math.random().toString(),
 					y: Math.random(),
 					x: Math.random(),
 					z: Math.random(),
-					layer: Math.random() < 0.5 ? "foreground" : "background",
 					timestamp: new Date().getTime()
 				}))()))
-		}, 1800)
+		}, 700)
 		return () => {
 			window.clearInterval(interval)
 		}
@@ -86,60 +56,42 @@ export function HeroSection(props: HeroSectionProps) {
 
 	return <section className={cx(styles.HeroSection)}>
 
-		<div ref={backgroundImageLayer} className={cx(styles.backgroundImageLayer)}>
-			<Image
-				className={cx(styles.backgroundImage)}
-				src="/images/mountains-background.png"
+		<div ref={backgroundLayer} className={cx(styles.backgroundLayer)}>
+			{/* <Image
+				// src="/images/hero-forest-foreground.png"
+				src="/images/background-blue.jpg"
+				// src="/images/laptop.png"
 				layout="fill"
 				objectFit="cover"
-			/>
+			/> */}
 		</div>
 
-		<div ref={backgroundTransactionsLayer} className={cx(styles.backgroundTransactionsLayer)}>
+		<div className={cx(styles.mockupImageContainer)}>
+			<div className={cx(styles.mockupImagePositioner)}>
+				<div className={cx(styles.mockupImage)}>
+					<Image
+						className={cx(styles.foregroundImage)}
+						src="/images/mobile-mockup.png"
+						layout="fill"
+						objectFit="cover"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<div ref={transactionsLayer} className={cx(styles.transactionsLayer)}>
 			{
-				fakeTransactions.filter(_ => _.layer === "background").map(item => (
+				fakeTransactions.map(item => (
 					<div
 						key={item.id}
 						className={styles.transaction}
 						style={{
 							position: "absolute",
-							left: `${(9 + 82 * item.x)}%`,
-							top: `${(5 + 80 * item.y)}%`,
-							filter: `blur(${(2 + 1 * item.z)}px)`,
-							transform: `translate(-50%,-50%) scale(${1 - item.z * 0.5})`,
-							opacity: `${30 + item.z * 30}%`
-						}}
-					>
-						<div className={styles.transactionInner}>
-							<FakeTransaction />
-						</div>
-					</div>
-				))
-			}
-		</div>
-
-		<div ref={foregroundImageLayer} className={cx(styles.foregroundImageLayer)}>
-			<Image
-				className={cx(styles.foregroundImage)}
-				src="/images/mountains-foreground.png"
-				layout="fill"
-				objectFit="cover"
-			/>
-		</div>
-
-		<div ref={foregroundTransactionsLayer} className={cx(styles.foregroundTransactionsLayer)}>
-			{
-				fakeTransactions.filter(_ => _.layer === "foreground").map(item => (
-					<div
-						key={item.id}
-						className={styles.transaction}
-						style={{
-							position: "absolute",
-							left: `${(20 + 70 * item.x)}%`,
-							top: `${(10 + 60 * item.y)}%`,
-							filter: `blur(${(0 + 0.5 * item.z)}px)`,
-							transform: `translate(-50%,-50%) scale(${1 - item.z * 0.2})`,
-							opacity: `${50 + item.z * 40}%`
+							left: `${(50 + 40 * item.x)}%`,
+							top: `${(15 + 80 * item.y)}%`,
+							filter: `blur(${(0.5 + 4.5 * item.z)}px)`,
+							transform: `translate(-50%,-50%) scale(${0.8 - item.z * 0.4})`,
+							opacity: `${80 - item.z * 15}%`
 						}}
 					>
 						<div className={styles.transactionInner}>
@@ -155,32 +107,52 @@ export function HeroSection(props: HeroSectionProps) {
 				<Type
 					component="h1"
 					size="xxxl"
-					color="white"
+					color="gray-800"
 					variant="bold"
 				>
-					{"Get your money under control."}
+					{"Get your spending under control."}
 				</Type>
-				<a
-					href="https://app.nexpenda.com/register"
-					target="blank"
-					rel="noreferrer noopener"
-					onClick={() => GtagService.events.goto_signup()}
-					tabIndex={-1}
+				<Type
+					component="h2"
+					size="lg"
+					color="gray-700"
+				// variant="bold"
 				>
-					<Button
-						className={styles.callToAction}
-						variant="contained"
-						color="primary"
-						size="large"
-						startIcon={
-							<SvgIcon>
-								<NexpendaLogoIconWhiteSvg />
-							</SvgIcon>
-						}
+					{"Experience a new way of tracking your expenses."}
+				</Type>
+				<div className={styles.callToActionContainer}>
+					<a
+						href="https://app.nexpenda.com/register"
+						target="blank"
+						rel="noreferrer noopener"
+						onClick={() => GtagService.events.goto_signup()}
+						tabIndex={-1}
 					>
-						{`Create a free account`}
-					</Button>
-				</a>
+						<Button
+							className={styles.primaryCallToAction}
+							variant="contained"
+							color="primary"
+							size="large"
+							startIcon={
+								<SvgIcon>
+									<NexpendaLogoIconWhiteSvg />
+								</SvgIcon>
+							}
+						>
+							{`Get started for free`}
+						</Button>
+					</a>
+
+					<a href="#spreadsheets">
+						<Button
+							className={styles.secondaryCallToAction}
+							variant="text"
+							size="large"
+						>
+							{`Read more`}
+						</Button>
+					</a>
+				</div>
 
 			</div>
 		</div>

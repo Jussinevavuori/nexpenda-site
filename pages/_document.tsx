@@ -19,6 +19,17 @@ export default class MyDocument extends Document {
 						`
 					}}
 				/>
+				<link rel="canonical" href="https://nexpenda.com" />
+				<meta
+					name="description"
+					content={
+						"Nexpenda - Get your spending under control.\n" +
+						"Free, easy and fast expense tracking, automated " +
+						"analytics, budgets and more! Experience a new way of " +
+						"tracking your expenses."
+					}
+				>
+				</meta>
 			</Head>
 			<body>
 				<Main />

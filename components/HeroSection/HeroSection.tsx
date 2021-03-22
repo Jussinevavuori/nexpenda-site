@@ -75,6 +75,7 @@ export function HeroSection(props: HeroSectionProps) {
 						src="/images/mobile-mockup.png"
 						layout="fill"
 						objectFit="cover"
+						alt="Mobile mockup"
 					/>
 				</div>
 			</div>

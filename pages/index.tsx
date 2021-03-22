@@ -3,7 +3,6 @@ import cx from 'classnames'
 import styles from "../styles/pages/index.module.scss";
 import Image from "next/image"
 import Logo from "../public/logos/logo_full_colored.svg"
-import ConfusedComputerIllustration from "../public/images/undraw_confused_computer.svg"
 import Head from 'next/head'
 import { Header } from "../components/Header/Header"
 import { HeroSection } from "../components/HeroSection/HeroSection"
@@ -24,7 +23,7 @@ export default function Test() {
 
 	return <div>
 		<Head>
-			<title>{"Nexpenda | Home"}</title>
+			<title>{"Nexpenda - Free expense tracking and budgets"}</title>
 		</Head>
 
 		<main className={styles.Home}>
@@ -72,6 +71,7 @@ export default function Test() {
 								src="/images/undraw_confused_computer.png"
 								layout="fill"
 								objectFit="contain"
+								alt=""
 							/>
 						</div>
 					</div>
@@ -85,6 +85,7 @@ export default function Test() {
 						src="/images/laptop.png"
 						layout="fill"
 						objectFit="cover"
+						alt="Desktop mockup"
 					/>
 				</div>
 			</section>
@@ -140,6 +141,7 @@ export default function Test() {
 						src="/images/mobile-mockup.png"
 						layout="fill"
 						objectFit="cover"
+						alt="Mobile mockup"
 					/>
 				</div>
 			</section>

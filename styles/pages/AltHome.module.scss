@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 2;
+    z-index: 100;
   }
 
   & > .section,
@@ -18,12 +18,16 @@
       position: relative;
       margin: 0 auto;
       width: calc(100% - #{2 * $spacing-4});
+      @include md {
+        width: calc(100% - #{2 * $spacing-12});
+      }
       padding: $spacing-24 0;
       max-width: $max-page-width;
     }
   }
 
   & .spreadsheetsSection {
+    z-index: 1;
     & .cardSection {
       border: 1px solid $blue-200;
       box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.08),
@@ -56,6 +60,21 @@
     }
   }
 
+  & > .imageSection {
+    padding: 0 0;
+    margin-top: -$spacing-8;
+    & > .sectionContent {
+      position: relative;
+      margin: 0;
+      height: 660px;
+      width: 100%;
+      max-width: unset;
+      & .desktopMockupImage {
+        width: 100%;
+      }
+    }
+  }
+
   & .howDoesItWorkSection {
     & .sectionContent {
       text-align: center;
@@ -65,24 +84,80 @@
 
         & ul {
           display: flex;
-          align-items: stretch;
+          flex-direction: column;
+          align-items: center;
+          @include md {
+            align-items: stretch;
+            flex-direction: row;
+          }
           justify-content: center;
           gap: $spacing-6;
           padding-top: $spacing-12;
 
           & li {
+            position: relative;
             gap: $spacing-6;
             width: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: grid;
+            grid-template:
+              "icon title" auto
+              "empty desc" auto / auto 1fr;
+            gap: $spacing-2 $spacing-4;
+            text-align: left;
+            @include md {
+              grid-template:
+                "title" auto
+                "icon" auto
+                "desc" auto / 1fr;
+              justify-items: center;
+              text-align: center;
+              gap: $spacing-4;
+            }
+
+            &:not(:last-child)::before {
+              content: "";
+              position: absolute;
+              display: block;
+              width: 1.5px;
+              background: $primary-300;
+              left: 16px;
+              top: 40px;
+              bottom: -16px;
+              @include md {
+                height: 1.5px;
+                width: unset;
+                top: 54px;
+                left: calc(50% + 36px);
+                right: calc(-50% + 16px);
+              }
+            }
+
+            & .title {
+              grid-area: title;
+            }
+            & .description {
+              grid-area: desc;
+            }
             & svg {
+              grid-area: icon;
               color: $blue-500;
               font-size: 2rem;
             }
           }
         }
       }
+    }
+  }
+
+  & .featuresSection {
+    background: $blue-100;
+    & .sectionContent {
+    }
+  }
+
+  & .premiumSection {
+    background: $yellow-100;
+    & .sectionContent {
     }
   }
 }

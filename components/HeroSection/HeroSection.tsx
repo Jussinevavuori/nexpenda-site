@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react"
-import Link from 'next/link'
 import styles from "./HeroSection.module.scss";
 import cx from "classnames"
 import Image from "next/image"
@@ -10,6 +9,7 @@ import { Type } from '../Type/Type';
 import { GtagService } from '../../services/GtagService';
 import { Button, SvgIcon } from "@material-ui/core";
 import { useOnScroll } from "../../hooks/useOnScroll";
+import { useMdMedia } from "../../hooks/useMedia";
 
 export type HeroSectionProps = {}
 
@@ -19,6 +19,7 @@ export function HeroSection(props: HeroSectionProps) {
 	const transactionsLayer = useRef<HTMLDivElement | null>(null)
 	const contentLayerContent = useRef<HTMLDivElement | null>(null)
 	const contentLayer = useRef<HTMLDivElement | null>(null)
+	const isDesktop = useMdMedia()
 
 	useOnScroll(scroll => {
 		if (transactionsLayer.current) {
@@ -87,7 +88,9 @@ export function HeroSection(props: HeroSectionProps) {
 						className={styles.transaction}
 						style={{
 							position: "absolute",
-							left: `${(50 + 40 * item.x)}%`,
+							left: isDesktop
+								? `${50 + 40 * item.x}%`
+								: `${10 + 80 * item.x}%`,
 							top: `${(15 + 80 * item.y)}%`,
 							filter: `blur(${(0.5 + 4.5 * item.z)}px)`,
 							transform: `translate(-50%,-50%) scale(${0.8 - item.z * 0.4})`,
@@ -107,7 +110,7 @@ export function HeroSection(props: HeroSectionProps) {
 				<Type
 					component="h1"
 					size="xxxl"
-					color="gray-800"
+					color="gray-900"
 					variant="bold"
 				>
 					{"Get your spending under control."}

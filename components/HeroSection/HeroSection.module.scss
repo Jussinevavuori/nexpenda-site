@@ -80,11 +80,16 @@
     );
 
     & .content {
+      padding: 70px 0;
       height: 100%;
       display: flex;
       flex-direction: column;
-      // align-items: center;
-      align-items: flex-start;
+      text-align: center;
+      align-items: center;
+      @include md {
+        text-align: left;
+        align-items: flex-start;
+      }
       justify-content: center;
       width: calc(100% - #{2 * $spacing-6});
       max-width: $max-page-width;

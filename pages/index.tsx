@@ -23,10 +23,10 @@ export default function Test() {
 
 	return <div>
 		<Head>
-			<title>{"Nexpenda - Free expense tracking and budgets"}</title>
+			<title>{"Nexpenda - Free expense tracking and budgeting"}</title>
 			<meta
 				property="og:title"
-				content="Nexpenda - Free expense tracking and budgets"
+				content="Nexpenda - Free expense tracking and budgeting"
 			/>
 		</Head>
 

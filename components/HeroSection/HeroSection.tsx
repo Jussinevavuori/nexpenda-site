@@ -48,7 +48,7 @@ export function HeroSection(props: HeroSectionProps) {
 					z: Math.random(),
 					timestamp: new Date().getTime()
 				}))()))
-		}, 700)
+		}, 600)
 		return () => {
 			window.clearInterval(interval)
 		}
@@ -94,7 +94,8 @@ export function HeroSection(props: HeroSectionProps) {
 							top: `${(15 + 80 * item.y)}%`,
 							filter: `blur(${(0.5 + 4.5 * item.z)}px)`,
 							transform: `translate(-50%,-50%) scale(${0.8 - item.z * 0.4})`,
-							opacity: `${80 - item.z * 15}%`
+							opacity: `${80 - item.z * 15}%`,
+							// zIndex: item.z > 0.5 ? 1 : -100,
 						}}
 					>
 						<div className={styles.transactionInner}>
@@ -126,8 +127,8 @@ export function HeroSection(props: HeroSectionProps) {
 				<div className={styles.callToActionContainer}>
 					<a
 						href="https://app.nexpenda.com/register"
-						target="blank"
-						rel="noreferrer noopener"
+						// target="blank"
+						// rel="noreferrer noopener"
 						onClick={() => GtagService.events.goto_signup()}
 						tabIndex={-1}
 					>
@@ -146,13 +147,19 @@ export function HeroSection(props: HeroSectionProps) {
 						</Button>
 					</a>
 
-					<a href="#spreadsheets">
+					<a
+						href="https://app.nexpenda.com/"
+						// target="blank"
+						// rel="noreferrer noopener"
+						onClick={() => GtagService.events.goto_login()}
+						tabIndex={-1}
+					>
 						<Button
 							className={styles.secondaryCallToAction}
 							variant="text"
 							size="large"
 						>
-							{`Read more`}
+							{`Sign in`}
 						</Button>
 					</a>
 				</div>

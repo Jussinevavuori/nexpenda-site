@@ -28,7 +28,9 @@
 
   & .spreadsheetsSection {
     z-index: 1;
+    position: relative;
     & .cardSection {
+      position: relative;
       border: 1px solid $blue-200;
       box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.08),
         1px 1px 2px rgba(0, 0, 0, 0.05);
@@ -36,9 +38,9 @@
       margin: -$spacing-12 auto 0;
       border-radius: $spacing-2;
       background: white;
-      padding: 0 $spacing-8;
+      padding: 0 $spacing-12;
       & .sectionContent {
-        padding: $spacing-8 0;
+        padding: $spacing-12 0;
         & p {
           max-width: 600px;
           padding: $spacing-6 0;
@@ -57,12 +59,35 @@
           }
         }
       }
+
+      & .illustrationContainer {
+        opacity: 0;
+        transition: opacity 500ms;
+        @include lg {
+          opacity: 1;
+        }
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 400px;
+        height: 100%;
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: $spacing-12;
+      background: $blue-100;
+      z-index: -100;
     }
   }
 
-  & > .imageSection {
+  & > .desktopMockupImageSection {
     padding: 0 0;
-    margin-top: -$spacing-8;
+    margin-top: -$spacing-12;
     & > .sectionContent {
       position: relative;
       margin: 0;
@@ -78,6 +103,7 @@
   & .howDoesItWorkSection {
     & .sectionContent {
       text-align: center;
+      padding-bottom: $spacing-6;
 
       & .instructionsContainer {
         padding: $spacing-6 0;
@@ -149,15 +175,127 @@
     }
   }
 
-  & .featuresSection {
-    background: $blue-100;
-    & .sectionContent {
+  & > .mobileMockupImageSection {
+    padding: 0 0;
+    & > .sectionContent {
+      position: relative;
+      margin: 0 auto;
+      height: 400px;
+      width: 400px;
+      max-width: unset;
+      & .mobileMockupImage {
+        width: 100%;
+        transform: translateX(-40px); //Visual centering
+      }
     }
   }
 
-  & .premiumSection {
-    background: $yellow-100;
+  & .featuresSection {
+    // background: $blue-100;
     & .sectionContent {
+      padding-top: $spacing-6;
+      padding-bottom: $spacing-6;
+      & h2 {
+        text-align: center;
+      }
+      & ul {
+        display: grid;
+        padding: $spacing-12 0;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: $spacing-12;
+        max-width: 600px;
+        @include md {
+          max-width: 860px;
+        }
+
+        & li {
+          display: grid;
+          max-width: 320px;
+          margin: 0 auto;
+          grid-template: "icon title" auto "desc desc" 1fr / auto 1fr;
+          gap: $spacing-4;
+          align-items: center;
+
+          & .title {
+            grid-area: title;
+          }
+          & .description {
+            grid-area: desc;
+            align-self: flex-start;
+          }
+          & .icon {
+            border-radius: $spacing-4;
+            grid-area: icon;
+            padding: $spacing-3;
+          }
+          &.pink .icon {
+            background: $pink-200;
+            color: $pink-600;
+          }
+          &.blue .icon {
+            background: $blue-200;
+            color: $blue-600;
+          }
+          &.red .icon {
+            background: $red-200;
+            color: $red-600;
+          }
+          &.yellow .icon {
+            background: $yellow-200;
+            color: $yellow-600;
+          }
+          &.green .icon {
+            background: $green-200;
+            color: $green-600;
+          }
+          &.purple .icon {
+            background: $purple-200;
+            color: $purple-600;
+          }
+        }
+      }
+    }
+  }
+
+  & .getStartedSection {
+    padding: $spacing-12;
+    & .sectionContent {
+      background: $blue-400;
+      border-radius: $spacing-12;
+      padding: $spacing-12 $spacing-12;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      gap: $spacing-6;
+      & .callToAction {
+        margin-top: $spacing-6;
+        padding: $spacing-4 $spacing-12;
+        background: white;
+        color: $blue-600;
+        @include text-bold-lg;
+        &:hover {
+          background: $blue-100;
+        }
+      }
+    }
+  }
+
+  & .footer {
+    background: $gray-100;
+    & .footerContent {
+      padding: $spacing-12 0;
+      & .logoContainer {
+        margin: 0 auto;
+        max-width: 200px;
+      }
+      & .container {
+        padding: $spacing-6 0;
+        text-align: center;
+        margin: 0 auto;
+      }
     }
   }
 }

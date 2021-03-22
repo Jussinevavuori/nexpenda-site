@@ -6,7 +6,6 @@ import { Button } from "@material-ui/core";
 import { GtagService } from "../../services/GtagService";
 
 export type HeaderProps = {
-	unscrolledVariant?: "invisible";
 }
 
 export function Header(props: HeaderProps) {
@@ -18,21 +17,20 @@ export function Header(props: HeaderProps) {
 			</div>
 			<div className={styles.right}>
 				<a
-					target="blank"
-					rel="noopener noreferrer"
+					// target="blank"
+					// rel="noopener noreferrer"
 					href={`https://app.nexpenda.com/`}
 					onClick={() => GtagService.events.goto_login()}
 					tabIndex={-1}
 				>
 					<Button
-						className={styles.MuiTextButton}
-						variant="text"
+						variant="contained"
 						color="primary"
 					>
 						{"Sign in"}
 					</Button>
 				</a>
-				<a
+				{/* <a
 					target="blank"
 					rel="noopener noreferrer"
 					href={`https://app.nexpenda.com/register`}
@@ -45,7 +43,7 @@ export function Header(props: HeaderProps) {
 					>
 						{"Create a free account"}
 					</Button>
-				</a>
+				</a> */}
 			</div>
 		</div>
 	</header>

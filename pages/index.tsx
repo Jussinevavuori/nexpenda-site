@@ -1,322 +1,327 @@
-import styles from "../styles/pages/Home.module.scss";
-import Head from 'next/head'
+import React from 'react'
+import cx from 'classnames'
+import styles from "../styles/pages/index.module.scss";
 import Image from "next/image"
-import cx from "classnames"
-import React, { useEffect } from 'react'
 import Logo from "../public/logos/logo_full_colored.svg"
-import NexpendaLogoIconWhiteSvg from "../public/logos/logo_icon_white.svg"
-import NexpendaLogoIconColoredSvg from "../public/logos/logo_icon_colored.svg"
+import ConfusedComputerIllustration from "../public/images/undraw_confused_computer.svg"
+import Head from 'next/head'
 import { Header } from "../components/Header/Header"
-import { Type } from '../components/Type/Type'
-import { Button, SvgIcon } from "@material-ui/core";
+import { HeroSection } from "../components/HeroSection/HeroSection"
+import { Type } from '../components/Type/Type';
+import { CheckCircleOutline as CheckIcon } from '@material-ui/icons';
 import {
-	AccountBalance as AccountBalanceIcon,
-	Check as CheckmarkIcon,
-	LocalAtm as MoneyIcon,
-	Loop as LoopIcon,
-	PieChart as PieChartIcon,
-	PlaylistAdd as ListAddItemIcon
-} from "@material-ui/icons";
-import { GtagService } from "../services/GtagService";
+	Zap as ZapIcon,
+	Lock as LockIcon,
+	BarChart as AnalyticsIcon,
+	Briefcase as BudgetsIcon,
+	Cloud as CloudIcon,
+	Upload as UploadIcon,
+} from 'react-feather';
+import { Button } from '@material-ui/core';
+import { GtagService } from '../services/GtagService';
+import { useMdMedia } from '../hooks/useMedia';
 
-export default function Home() {
-	useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }) }, [])
-
-	return (
-		<div >
-			<Head>
-				<title>{"Nexpenda | Home"}</title>
-			</Head>
-
-			<main className={styles.Home}>
-				<div className={styles.headerContainer}>
-					<Header />
-				</div>
+export default function Test() {
+	const isDesktop = useMdMedia()
 
 
-				<div className={styles.content}>
-					<section className={styles.hero}>
-						<div className={styles.sectionContent}>
-							<div className={styles.heroRight}>
-								<div className={styles.heroImage}>
-									<Image
-										src="/images/mobile-mockup.png"
-										alt="Mobile mockup"
-										layout="fill"
-									/>
-								</div>
-							</div>
-							<div className={styles.heroLeft}>
-								<Type component="h1" color="black" variant="bold" size="xxxl">
-									{`We make saving money easy.`}
-								</Type>
-								<div className={styles.ctas}>
-									<a
-										href="https://app.nexpenda.com/register"
-										target="blank"
-										rel="noreferrer noopener"
-										onClick={() => GtagService.events.goto_signup()}
-									>
-										<Button
-											className={styles.ctaButton}
-											variant="contained"
-											color="primary"
-											startIcon={
-												<SvgIcon>
-													<NexpendaLogoIconWhiteSvg />
-												</SvgIcon>
-											}
-										>
-											{`Create a free account`}
-										</Button>
-									</a>
-									<a
-										href="https://app.nexpenda.com"
-										target="blank"
-										rel="noreferrer noopener"
-										onClick={() => GtagService.events.goto_login()}
-									>
-										<Button
-											className={cx(styles.ctaButton, styles.secondary)}
-											variant="outlined"
-											color="primary"
-											startIcon={
-												<SvgIcon>
-													<NexpendaLogoIconColoredSvg />
-												</SvgIcon>
-											}
-										>
-											{`Open Nexpenda`}
-										</Button>
-									</a>
-								</div>
-							</div>
-							<div className={styles.betaNotice}>
-								<Type color="gray-600">
-									{"* Nexpenda is currently in Beta-testing. "}
-									{"Some features may be buggy or missing."}
-								</Type>
-							</div>
-						</div>
-					</section>
-					<section className={styles.features}>
-						<div className={styles.sectionContent}>
-							<div className={styles.content}>
-								<Type color="white" component="h2" size="xxxl" variant="bold">
-									{"All these superpowers, completely free."}
-								</Type>
-								<ul>
-									<li>
-										<i>
-											<ListAddItemIcon />
-										</i>
-										<Type component="h3" color="gray-800" variant="bold" size="lg">
-											{"Track your spending"}
-										</Type>
-										<Type color="gray-700" component="p">
-											{`Logging your income and expenses takes only a few clicks.`}
-										</Type>
-									</li>
-									<li>
-										<i>
-											<PieChartIcon />
-										</i>
-										<Type component="h3" color="gray-800" variant="bold" size="lg">
-											{"Detailed analytics"}
-										</Type>
-										<Type color="gray-700" component="p">
-											{`Track where your money is going and review your spending habits.`}
-										</Type>
-									</li>
-									<li>
-										<i>
-											<AccountBalanceIcon />
-										</i>
-										<Type component="h3" color="gray-800" variant="bold" size="lg">
-											{"Create and track budgets"}
-										</Type>
-										<Type color="gray-700" component="p">
-											{`Define your targets, set your limits and let us help you save money.`}
-										</Type>
-									</li>
-								</ul>
-							</div>
-							<div className={styles.background}>
-								<div className={styles.backgroundImage}>
-									<Image
-										src="/images/background-1.png"
-										layout="fill"
-									/>
-								</div>
-							</div>
-						</div>
-					</section>
-					<section className={styles.how}>
-						<div className={styles.sectionContent}>
-							<Type component="h2" color="black" size="xxxl" variant="bold">
-								{"How does it work?"}
+	return <div>
+		<Head>
+			<title>{"Nexpenda | New Homepage"}</title>
+		</Head>
+
+		<main className={styles.Home}>
+
+
+			<div className={styles.headerContainer}>
+				<Header />
+			</div>
+
+
+			<section className={cx(styles.heroContainer)}>
+				<HeroSection />
+			</section>
+
+			<section className={cx(styles.section, styles.spreadsheetsSection)}>
+				<div className={styles.cardSection}>
+					<div
+						className={styles.sectionContent}
+						id="spreadsheets"
+					>
+						<Type component="h2" size="xxl" variant="bold">
+							{"Say goodbye to clunky spreadsheets"}
+						</Type>
+						<Type component="p">
+							{"Stop fiddling with creating, updating and maintaining "}
+							{"difficult and outdated Excel files! We provide you a "}
+							{"better alternative to spreadsheets."}
+						</Type>
+						<ul>
+							<Type component="li" variant="bold">
+								<CheckIcon />
+								{"Faster data entry both for mobile and desktop users"}
 							</Type>
-							<ul>
-								<li>
-									<div className={styles.stepTitle}>
-										<i>
-											<MoneyIcon />
-										</i>
-										<Type component="h3" size="xl" color="blue-500" variant="bold">
-											{"Track your spending"}
-										</Type>
-									</div>
-									<div className={styles.stepSummary}>
-										<Type component="p">
-											{`
-												Whenever you spend or receive money, log it to the app.
-												We’ve made this as easy as possible for you!
-											`}
-										</Type>
-									</div>
-								</li>
-								<li>
-									<div className={styles.stepTitle}>
-										<i>
-											<AccountBalanceIcon />
-										</i>
-										<Type component="h3" size="xl" color="blue-500" variant="bold">
-											{"Create a budget"}
-										</Type>
-									</div>
-									<div className={styles.stepSummary}>
-										<Type component="p">
-											{`
-												How much should you be spending on money
-												each month? Tell us, and we help you hit your
-												targets. Or don’t, we can’t tell you what to do.
-											`}
-										</Type>
-									</div>
-								</li>
-								<li>
-									<div className={styles.stepTitle}>
-										<i>
-											<LoopIcon />
-										</i>
-										<Type component="h3" size="xl" color="blue-500" variant="bold">
-											{"Make it a habit"}
-										</Type>
-									</div>
-									<div className={styles.stepSummary}>
-										<Type component="p">
-											{`
-												If you can make it a habit to log your incomes
-												and expenses, we promise to do the rest and
-												provide you with real and helpful tools and info!
-											`}
-										</Type>
-									</div>
-								</li>
-								<li>
-									<div className={styles.stepTitle}>
-										<i>
-											<CheckmarkIcon />
-										</i>
-										<Type component="h3" size="xl" color="blue-500" variant="bold">
-											{"You're done!"}
-										</Type>
-									</div>
-									<div className={styles.stepSummary}>
-										<Type component="p">
-											{`
-												As you keep track of your spending, the app will
-												automatically track your budgets for you and
-												generate detailed analytics.
-											`}
-										</Type>
-									</div>
-								</li>
-							</ul>
+							<Type component="li" variant="bold">
+								<CheckIcon />
+								{"Analytics, charts, budgets and more straight out of the box"}
+							</Type>
+							<Type component="li" variant="bold">
+								<CheckIcon />
+								{"Importing data from your existing spreadsheets"}
+							</Type>
+						</ul>
+						<div className={styles.illustrationContainer}>
+							<Image
+								src="/images/undraw_confused_computer.png"
+								layout="fill"
+								objectFit="contain"
+							/>
 						</div>
-					</section>
-					<section className={styles.finalCta}>
-						<div className={styles.sectionContent}>
-							<div className={styles.left}>
-								<Type color="white" component="p" variant="bold" size="xl">
-									{"It all starts with a free account."}
-								</Type>
-								<Type color="white" component="p" variant="bold" size="xxxl">
-									{"Start using now!"}
-								</Type>
-								<Type color="white" component="p" variant="bold" size="xl">
-									{"Use it on the web, on your desktop or mobile, or install it as an app."}
-								</Type>
-							</div>
-							<div className={styles.right}>
-								<a
-									href="https://app.nexpenda.com/register"
-									target="blank"
-									rel="noreferrer noopener"
-									onClick={() => GtagService.events.goto_signup()}
-								>
-									<Button
-										className={styles.ctaButton}
-										variant="contained"
-										color="primary"
-										startIcon={
-											<SvgIcon>
-												<NexpendaLogoIconColoredSvg />
-											</SvgIcon>
-										}
-									>
-										{`Create a free account`}
-									</Button>
-								</a>
-							</div>
-						</div>
-					</section>
-					<footer>
-						<div className={styles.footerContent}>
-							<div className={styles.logoContainer}>
-								<Logo />
-							</div>
-							<div className={styles.contact}>
-								<Type color="gray-700" variant="bold">
-									{"Contact me"}
-								</Type>
-								<Type color="gray-700">
-									{"Jussi Nevavuori <"}
-									<a href="mailto:jussi@nevavuori.fi">{"jussi@nevavuori.fi"}</a>
-									{">"}
-								</Type>
-							</div>
-							<div className={styles.poweredBy}>
-								<Type color="gray-700">
-									{"Powered by Next.js and Vercel"}
-								</Type>
-							</div>
-							<div className={styles.links}>
-								<a
-									target="blank"
-									rel="noopener noreferrer"
-									href={`https://app.nexpenda.com/`}
-									onClick={() => GtagService.events.goto_login()}
-								>
-									<Button variant="text" color="primary">
-										{"Sign in"}
-									</Button>
-								</a>
-								<a
-									target="blank"
-									rel="noopener noreferrer"
-									href={`https://app.nexpenda.com/register`}
-									onClick={() => GtagService.events.goto_signup()}
-								>
-									<Button variant="contained" color="primary">
-										{"Create a free account"}
-									</Button>
-								</a>
-							</div>
-						</div>
-					</footer>
+					</div>
 				</div>
-			</main>
-		</div>
-	)
+			</section>
+
+			<section className={cx(styles.section, styles.desktopMockupImageSection)}>
+				<div className={styles.sectionContent}>
+					<Image
+						className={styles.desktopMockupImage}
+						src="/images/laptop.png"
+						layout="fill"
+						objectFit="cover"
+					/>
+				</div>
+			</section>
+
+			<section className={cx(styles.section, styles.howDoesItWorkSection)}>
+				<div className={styles.sectionContent}>
+					<Type component="h2" size="xxl" variant="bold">
+						{"How does it work?"}
+					</Type>
+					<div className={styles.instructionsContainer}>
+						<ul className={styles.instructions}>
+							<li>
+								<Type className={styles.title} variant="bold">
+									{"Log your incomes and expenses"}
+								</Type>
+								<CheckIcon />
+								<Type className={styles.description} >
+									{"Get into the habit of logging your incomes and expenses as "}
+									{"they come, once a week or at the end of every month."}
+								</Type>
+							</li>
+							<li>
+								<Type className={styles.title} variant="bold">
+									{"Set up your budgets"}
+								</Type>
+								<CheckIcon />
+								<Type className={styles.description}  >
+									{"Estimate your monthly incomes and expenses and set up "}
+									{"limits for how much you want to be spending on different "}
+									{"categories."}
+								</Type>
+							</li>
+							<li>
+								<Type className={styles.title} variant="bold">
+									{"We provide the rest"}
+								</Type>
+								<CheckIcon />
+								<Type className={styles.description}  >
+									{"Once you start logging your transactions, we will "}
+									{"automatically provide you with all the rest! "}
+									{"See below for all features."}
+								</Type>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section className={cx(styles.section, styles.mobileMockupImageSection)}>
+				<div className={styles.sectionContent}>
+					<Image
+						className={styles.mobileMockupImage}
+						src="/images/mobile-mockup.png"
+						layout="fill"
+						objectFit="cover"
+					/>
+				</div>
+			</section>
+
+
+			<section className={cx(styles.section, styles.featuresSection)}>
+				<div className={styles.sectionContent}>
+					<Type component="h2" size="xxl" variant="bold">
+						{"All these features, for free"}
+					</Type>
+					<ul>
+						<li className={styles.yellow}>
+							<Type
+								className={styles.title}
+								variant="bold"
+								color="yellow-800"
+							>
+								{"Easy and fast"}
+							</Type>
+							<div className={styles.icon}>
+								<ZapIcon />
+							</div>
+							<Type
+								className={styles.description}
+								color="gray-700"
+							>
+								{"No more frustrations or slow interfaces. "}
+								{"Logging your transactions takes only seconds."}
+							</Type>
+						</li>
+						<li className={styles.blue}>
+							<Type
+								className={styles.title}
+								variant="bold"
+								color="blue-800"
+							>
+								{"Analytics"}
+							</Type>
+							<div className={styles.icon}>
+								<AnalyticsIcon />
+							</div>
+							<Type
+								className={styles.description}
+								color="gray-700"
+							>
+								{"Get insights, charts, detailed overviews and more "}
+								{"to understand your spending habits."}
+							</Type>
+						</li>
+						<li className={styles.green}>
+							<Type
+								className={styles.title}
+								variant="bold"
+								color="green-800"
+							>
+								{"Budgets"}
+							</Type>
+							<div className={styles.icon}>
+								<BudgetsIcon />
+							</div>
+							<Type
+								className={styles.description}
+								color="gray-700"
+							>
+								{"Estimate your incomes, set up your spending limits "}
+								{"and follow your progress."}
+							</Type>
+						</li>
+						<li className={styles.pink}>
+							<Type
+								className={styles.title}
+								variant="bold"
+								color="pink-800"
+							>
+								{"Use on the go"}
+							</Type>
+							<div className={styles.icon}>
+								<CloudIcon />
+							</div>
+							<Type
+								className={styles.description}
+								color="gray-700"
+							>
+								{"Use Nexpenda in your browser on your mobile or desktop "}
+								{"and access your data from the cloud anywhere!"}
+							</Type>
+						</li>
+						<li className={styles.red}>
+							<Type
+								className={styles.title}
+								variant="bold"
+								color="red-800"
+							>
+								{"Use your data"}
+							</Type>
+							<div className={styles.icon}>
+								<UploadIcon />
+							</div>
+							<Type
+								className={styles.description}
+								color="gray-700"
+							>
+								{"Easily import and export data to and from "}
+								{"your own spreadsheets."}
+							</Type>
+						</li>
+						<li className={styles.purple}>
+							<Type
+								className={styles.title}
+								variant="bold"
+								color="purple-800"
+							>
+								{"Security"}
+							</Type>
+							<div className={styles.icon}>
+								<LockIcon />
+							</div>
+							<Type
+								className={styles.description}
+								color="gray-700"
+							>
+								{"Your data is protected and secure with us."}
+							</Type>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section className={cx(styles.section, styles.getStartedSection)}>
+				<div className={styles.sectionContent}>
+					<Type component="h2" size="xxl" variant="bold" color="white">
+						{"What are you waiting for?"}
+					</Type>
+					<Type color="white">
+						{"Start taking better care of your spending already today - "}
+						{"it's free!"}
+					</Type>
+					<a
+						href="https://app.nexpenda.com/register"
+						// target="blank"
+						// rel="noreferrer noopener"
+						onClick={() => GtagService.events.goto_signup()}
+						tabIndex={-1}
+					>
+						<Button
+							className={styles.callToAction}
+							variant="contained"
+							color="primary"
+							size="large"
+						>
+							{`Get started for free`}
+						</Button>
+					</a>
+				</div>
+
+			</section>
+
+			<footer className={styles.footer}>
+				<div className={styles.footerContent}>
+					<div className={styles.logoContainer}>
+						<Logo />
+					</div>
+					<div className={styles.container}>
+						<Type color="gray-800" variant="bold">
+							{"Contact"}
+						</Type>
+						<Type color="gray-800">
+							{"Jussi Nevavuori <"}
+							<a href="mailto:jussi@nevavuori.fi">{"jussi@nevavuori.fi"}</a>
+							{">"}
+						</Type>
+					</div>
+					<div className={styles.container}>
+						<Type color="gray-700">
+							{"Powered by Next.js and Vercel"}
+						</Type>
+					</div>
+				</div>
+			</footer>
+		</main>
+	</div>
 }

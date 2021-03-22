@@ -19,11 +19,8 @@ import {
 } from 'react-feather';
 import { Button } from '@material-ui/core';
 import { GtagService } from '../services/GtagService';
-import { useMdMedia } from '../hooks/useMedia';
 
 export default function Test() {
-	const isDesktop = useMdMedia()
-
 
 	return <div>
 		<Head>

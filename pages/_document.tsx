@@ -44,7 +44,7 @@ export default class MyDocument extends Document {
 				<meta name="author" content="Jussi Nevavuori" />
 				<meta property="og:description" content={siteDescription} />
 				<meta property="og:type" content="website" />
-				<meta property="og:image" content="/og-image.png" />
+				<meta property="og:image" content="https://nexpenda.com/og-image.png" />
 				<meta property="og:image:alt" content="Nexpenda logo" />
 				<meta property="og:url" content="https://nexpenda.com" />
 				<meta property="og:site_name" content="Nexpenda" />

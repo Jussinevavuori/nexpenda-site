@@ -27,7 +27,7 @@ export default function Test() {
 
 	return <div>
 		<Head>
-			<title>{"Nexpenda | New Homepage"}</title>
+			<title>{"Nexpenda | Home"}</title>
 		</Head>
 
 		<main className={styles.Home}>

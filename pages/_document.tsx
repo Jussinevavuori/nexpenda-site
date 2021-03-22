@@ -1,6 +1,25 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
+const siteDescription = "Nexpenda - Get your spending under control.\n" +
+	"Free, easy and fast expense tracking, automated " +
+	"analytics, budgets and more! Experience a new way of " +
+	"tracking your expenses."
+
+const siteKeywords = [
+	"Nexpenda",
+	"Budgets",
+	"Budget",
+	"Expense",
+	"Tracking",
+	"Analytics",
+	"Income",
+	"Penno",
+	"Personal finance",
+	"Finance",
+	"Money",
+	"Saving"
+]
 export default class MyDocument extends Document {
 
 	render() {
@@ -20,16 +39,15 @@ export default class MyDocument extends Document {
 					}}
 				/>
 				<link rel="canonical" href="https://nexpenda.com" />
-				<meta
-					name="description"
-					content={
-						"Nexpenda - Get your spending under control.\n" +
-						"Free, easy and fast expense tracking, automated " +
-						"analytics, budgets and more! Experience a new way of " +
-						"tracking your expenses."
-					}
-				>
-				</meta>
+				<meta name="description" content={siteDescription} />
+				<meta name="keywords" content={siteKeywords.join(", ")} />
+				<meta name="author" content="Jussi Nevavuori" />
+				<meta property="og:description" content={siteDescription} />
+				<meta property="og:type" content="website" />
+				<meta property="og:image" content="/og-image.png" />
+				<meta property="og:image:alt" content="Nexpenda logo" />
+				<meta property="og:url" content="https://nexpenda.com" />
+				<meta property="og:site_name" content="Nexpenda" />
 			</Head>
 			<body>
 				<Main />

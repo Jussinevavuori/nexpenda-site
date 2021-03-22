@@ -24,6 +24,10 @@ export default function Test() {
 	return <div>
 		<Head>
 			<title>{"Nexpenda - Free expense tracking and budgets"}</title>
+			<meta
+				property="og:title"
+				content="Nexpenda - Free expense tracking and budgets"
+			/>
 		</Head>
 
 		<main className={styles.Home}>
